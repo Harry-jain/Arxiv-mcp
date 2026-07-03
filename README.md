@@ -22,6 +22,28 @@ and call its tools directly — no LLM required for this basic version, since it
 the MCP tool-calling loop end to end. You can later wire an LLM (e.g. Claude) into `/api/search` to
 summarize results instead of just listing them.
 
+## Why this exists
+
+Searching arXiv usually means opening a browser tab, typing a query into their site, and manually
+copy-pasting anything worth remembering into a notes app. This collapses that into one small tool:
+search and saving happen in the same place, and the "save" step is a real action an AI agent (or you)
+can trigger without leaving the conversation.
+
+It's also a template for the MCP pattern itself. Swap `search_papers` for a different free API — GitHub
+repos, RSS feeds, a local SQLite database — and the rest of the plumbing (stdio transport, Next.js API
+routes calling `callTool`, a reading-list-style JSON store) barely changes. If you're learning MCP,
+this is a complete but small enough example to read end to end in one sitting.
+
+## Who it helps
+
+- **Students / researchers** who want a lightweight, self-hosted way to search papers and keep a running
+  list without signing up for another SaaS tool or paying for one.
+- **Anyone building with MCP** who wants a working, minimal reference: one Python server, three tools,
+  one frontend calling them over stdio — no framework magic hiding what's actually happening.
+- **AI agent builders** — because the tools are exposed over MCP, any MCP-compatible client (Claude
+  Desktop, Claude Code, a custom agent) can call `search_papers` and `add_to_reading_list` directly,
+  not just this Next.js frontend.
+
 ## Setup
 
 ### 1. Python MCP server
