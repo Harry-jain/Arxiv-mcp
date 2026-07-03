@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+server/reading_list.json
+
+# Node / Next.js
+web/node_modules/
+web/.next/
+web/out/
+
+# Env secrets
+.env
+.env.local
+*.local
+
+# OS
+.DS_Store

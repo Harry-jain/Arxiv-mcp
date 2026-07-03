@@ -1,0 +1,111 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #0f1115;
+  color: #e6e6e6;
+}
+
+main {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.subtitle {
+  color: #9a9a9a;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+}
+
+.search-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+input {
+  flex: 1;
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid #2a2d34;
+  background: #1a1c22;
+  color: #e6e6e6;
+  font-size: 0.95rem;
+}
+
+button {
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  border: none;
+  background: #4f7cff;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+button:hover {
+  background: #3d68e6;
+}
+
+button.secondary {
+  background: #2a2d34;
+}
+
+button.secondary:hover {
+  background: #363a42;
+}
+
+.card {
+  border: 1px solid #2a2d34;
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  margin-bottom: 0.9rem;
+  background: #15171c;
+}
+
+.card h3 {
+  margin: 0 0 0.4rem 0;
+  font-size: 1rem;
+}
+
+.card p {
+  margin: 0.3rem 0;
+  font-size: 0.85rem;
+  color: #b7b7b7;
+  line-height: 1.4;
+}
+
+.card .meta {
+  font-size: 0.75rem;
+  color: #7d7d7d;
+  margin-bottom: 0.5rem;
+}
+
+.card .actions {
+  margin-top: 0.6rem;
+}
+
+section {
+  margin-top: 2.5rem;
+}
+
+section h2 {
+  font-size: 1.1rem;
+  border-bottom: 1px solid #2a2d34;
+  padding-bottom: 0.5rem;
+}
+
+.empty {
+  color: #6d6d6d;
+  font-size: 0.9rem;
+}
