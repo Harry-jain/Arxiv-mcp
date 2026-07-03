@@ -44,7 +44,14 @@ this is a complete but small enough example to read end to end in one sitting.
   Desktop, Claude Code, a custom agent) can call `search_papers` and `add_to_reading_list` directly,
   not just this Next.js frontend.
 
-## Setup
+### Quickest path
+```bash
+./setup.sh          # creates server/.venv and installs requirements there
+cd web && npm install && npm run dev
+```
+`web/lib/mcpClient.ts` auto-detects `server/.venv` — no `PYTHON_BIN` needed if you use `setup.sh`.
+
+### Manual setup
 
 ### 1. Python MCP server
 ```bash
@@ -66,6 +73,16 @@ If your Python binary isn't `python3` on PATH, set `PYTHON_BIN` in `web/.env.loc
 ```
 PYTHON_BIN=/full/path/to/venv/bin/python
 ```
+
+## Troubleshooting: "No module named 'arxiv'"
+
+This means the Python process spawned by Next.js isn't the same interpreter you ran
+`pip install -r requirements.txt` in. `npm run dev` doesn't inherit an activated venv from
+another terminal — it spawns `python3` fresh from PATH.
+
+Fix: either run `./setup.sh` (creates the venv exactly where `mcpClient.ts` looks for it,
+`server/.venv`), or set `PYTHON_BIN` in `web/.env.local` to the full path of the venv's
+python binary. Restart `npm run dev` after either change.
 
 ## Next steps (if you want to extend it)
 - Swap `reading_list.json` for SQLite once you want persistence across environments

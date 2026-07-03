@@ -302,3 +302,74 @@ section h2 .count {
   outline-offset: 3px;
   border-radius: 4px;
 }
+
+/* ---------- Halo orbs ---------- */
+
+.halo-field {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.halo {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.35;
+  will-change: transform;
+}
+
+.halo-1 {
+  width: 380px;
+  height: 380px;
+  top: -120px;
+  left: -80px;
+  background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+  animation: drift-1 22s ease-in-out infinite;
+}
+
+.halo-2 {
+  width: 300px;
+  height: 300px;
+  top: 30%;
+  right: -100px;
+  background: radial-gradient(circle, #7a5a2e 0%, transparent 70%);
+  animation: drift-2 26s ease-in-out infinite;
+}
+
+.halo-3 {
+  width: 260px;
+  height: 260px;
+  bottom: -100px;
+  left: 20%;
+  background: radial-gradient(circle, var(--accent-dim) 0%, transparent 70%);
+  animation: drift-3 30s ease-in-out infinite;
+}
+
+@keyframes drift-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(60px, 80px) scale(1.15); }
+}
+
+@keyframes drift-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-50px, 60px) scale(0.9); }
+}
+
+@keyframes drift-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(40px, -50px) scale(1.1); }
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .halo {
+    animation: none !important;
+  }
+}

@@ -16,7 +16,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <div className="halo-field" aria-hidden="true">
+          <span className="halo halo-1" />
+          <span className="halo halo-2" />
+          <span className="halo halo-3" />
+        </div>
+        {children}
+      </body>
     </html>
   );
 }
