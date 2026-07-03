@@ -1,0 +1,45 @@
+flowchart TD
+    subgraph UI["🖥️ Browser — page.tsx"]
+        A1["You type a topic<br/><i>e.g. 'edge computing'</i><br/>and hit Search"]
+        A2["You click <b>Save</b><br/>on a result card"]
+        A3["Page loads<br/><i>(no input needed)</i>"]
+    end
+
+    subgraph API["Next.js API routes"]
+        B1["POST /api/search<br/>in: { query, maxResults }"]
+        B2["POST /api/reading-list<br/>in: { id, title }"]
+        B3["GET /api/reading-list<br/>in: nothing"]
+    end
+
+    subgraph MCP["MCP client → Python subprocess (stdio)"]
+        C1["calls tool:<br/><b>search_papers</b>"]
+        C2["calls tool:<br/><b>add_to_reading_list</b>"]
+        C3["calls tool:<br/><b>get_reading_list</b>"]
+    end
+
+    subgraph DATA["Data sources"]
+        D1[("arXiv public API")]
+        D2[("reading_list.json<br/>local file")]
+    end
+
+    A1 -->|query text| B1 --> C1 -->|search request| D1
+    D1 -->|paper list: title, authors,<br/>summary, pdf link, id| C1
+    C1 -->|JSON papers| B1
+    B1 -->|out: { papers: [...] }| A1
+    A1 -.->|renders as result cards| OUT1["🟡 Output: list of paper cards<br/>+ Save button on each"]
+
+    A2 -->|paper id + title| B2 --> C2 -->|append entry| D2
+    D2 -->|write confirmation| C2 --> B2
+    B2 -->|out: { message }| A2
+    A2 -.->|marks card as 'Saved'| OUT2["🟡 Output: card updates,<br/>reading list count +1"]
+
+    A3 --> B3 --> C3 -->|read file| D2
+    D2 -->|saved papers| C3 --> B3
+    B3 -->|out: { papers: [...] }| A3
+    A3 -.->|renders reading list section| OUT3["🟡 Output: your saved<br/>papers displayed on load"]
+
+    style OUT1 fill:#d9a441,color:#1a1409
+    style OUT2 fill:#d9a441,color:#1a1409
+    style OUT3 fill:#d9a441,color:#1a1409
+    style D1 fill:#1c1812,color:#f2ece0
+    style D2 fill:#1c1812,color:#f2ece0

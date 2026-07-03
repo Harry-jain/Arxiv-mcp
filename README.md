@@ -9,7 +9,11 @@ A small MCP (Model Context Protocol) project:
 
 No paid API keys or providers required — arXiv's API is free and open.
 
-## How it works
+## How it flows
+
+See [`docs/app-flow.mmd`](docs/app-flow.mmd) for a diagram of exactly what goes in and comes out
+at each step (search, save, and reading-list load). Paste it into the [Mermaid Live Editor](https://mermaid.live)
+or view it directly on GitHub, which renders `.mmd`/Mermaid code blocks natively.
 
 ```
 Browser  →  Next.js page.tsx
